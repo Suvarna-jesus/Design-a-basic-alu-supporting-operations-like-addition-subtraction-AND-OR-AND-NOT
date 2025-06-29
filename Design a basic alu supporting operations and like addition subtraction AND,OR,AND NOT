@@ -1,0 +1,33 @@
+module ALU_tb();
+
+reg [7:0] a, b;
+reg [2:0] op;
+wire [7:0] result;
+
+ALU uut (
+    .A(a),
+    .B(b),
+    .op(op),
+    .result(result)
+);
+
+initial begin
+    a = 8'b00001111; b = 8'b00000001; op = 3'b000; #10; // ADD
+    $display("ADD: %b", result);
+
+    a = 8'b00001111; b = 8'b00000001; op = 3'b001; #10; // SUB
+    $display("SUB: %b", result);
+
+    a = 8'b00001111; b = 8'b00000001; op = 3'b010; #10; // AND
+    $display("AND: %b", result);
+
+    a = 8'b00001111; b = 8'b11110000; op = 3'b011; #10; // OR
+    $display("OR: %b", result);
+
+    a = 8'b00001111; op = 3'b100; #10; // NOT
+    $display("NOT: %b", result);
+
+    $finish;
+end
+
+endmodule
